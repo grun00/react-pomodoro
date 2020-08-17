@@ -22,9 +22,9 @@ function SessionInterval(props) {
     <section className='interval-outer'>
         <h4>{props.title}</h4>
       <section className='interval-inner'>
-        <button onClick={plusCounter}> <IoIosArrowUp/> </button>
+        <button disabled={props.isPlay} onClick={plusCounter}> <IoIosArrowUp/> </button>
         <p className='interval-length'> {props.interval < 10 ? '0' + props.interval : props.interval}</p>
-        <button onClick={minusCounter}> <IoIosArrowDown/>  </button>
+        <button disabled={props.isPlay} onClick={minusCounter}> <IoIosArrowDown/>  </button>
       </section>
     </section>
   )

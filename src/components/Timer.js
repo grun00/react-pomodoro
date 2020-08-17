@@ -20,7 +20,7 @@ class Timer extends Component {
 
   play(){
     let intervalId = setInterval(this.minusTimer, 1000);
-
+    this.props.isPlay(true)
     this.setState({
       intervalId: intervalId,
       isPaused: false
@@ -54,6 +54,7 @@ class Timer extends Component {
 
   pause(){
     clearInterval(this.state.intervalId);
+    this.props.isPlay(false)
     if (!this.state.isPaused) {
       this.setState({
         isPaused: !this.state.isPaused
@@ -64,10 +65,14 @@ class Timer extends Component {
   refresh() {
     this.pause();
     this.props.resetTimer();
+    this.props.isPlay(false)
     this.setState({
       timerSecond: 0,
       isSession: true
     })
+  }
+
+  onPlayTimer(){
   }
 
   render() {

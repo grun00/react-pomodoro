@@ -103,3 +103,6 @@ button {
   border-radius: 15px;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
