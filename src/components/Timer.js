@@ -78,7 +78,7 @@ class Timer extends Component {
   render() {
     return (
       <React.Fragment>
-        <section className='timer-outer'>
+        <section className='timer-outer' >
           <h4>
             {this.state.isSession === true? 'Study Time' : 'Break Time'}
           </h4>
