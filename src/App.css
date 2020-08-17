@@ -57,6 +57,16 @@ body {
   margin-top: 20px;
 }
 
+.timer-session {
+  display: flex;
+  font-size: 1rem;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+
+}
+
 .separator {
   padding: 100px;
 }
@@ -77,6 +87,7 @@ h4 {
   font-weight: 400;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0;
 }
 
 button {
@@ -91,3 +102,4 @@ button {
   color: #fe346e;
   border-radius: 15px;
 }
+

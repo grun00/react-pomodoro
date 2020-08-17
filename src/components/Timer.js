@@ -7,6 +7,7 @@ class Timer extends Component {
 
     this.state = {
       isPaused: true,
+      isSession: true,
       timerSecond: 0,
       intervalId: 0
     }
@@ -31,10 +32,10 @@ class Timer extends Component {
       case 0:
         if (this.props.timerMinute === 0) {
             this.setState({
-              isPaused: !this.state.isPaused
+              isSession: !this.state.isSession
             });
 
-            this.props.toggleInterval(this.state.isPaused);
+            this.props.toggleInterval(this.state.isSession);
           }
         this.props.updateTimerMinute()
         this.setState({
@@ -64,7 +65,8 @@ class Timer extends Component {
     this.pause();
     this.props.resetTimer();
     this.setState({
-      timerSecond: 0
+      timerSecond: 0,
+      isSession: true
     })
   }
 
@@ -72,7 +74,12 @@ class Timer extends Component {
     return (
       <React.Fragment>
         <section className='timer-outer'>
-          <h4> {this.state.isPaused === true? "Paused" : "Running"}</h4>
+          <h4>
+            {this.state.isSession === true? 'Study Time' : 'Break Time'}
+          </h4>
+          <p className='timer-session'>
+            {this.state.isPaused === true? "Paused" : "Running"}
+          </p>
           <section className='timer-inner'>
             <span> {this.props.timerHour < 10 ? '0' + this.props.timerHour : this.props.timerHour}</span>
             <span> : </span>

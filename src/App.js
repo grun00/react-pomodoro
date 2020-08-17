@@ -12,6 +12,7 @@ class App extends Component{
       sessionLength: 25,
       minute: 25,
       hour: 0,
+      isPlay: false
     }
 
     this.onIncreaseBreakLength = this.onIncreaseBreakLength.bind(this);
@@ -92,12 +93,14 @@ class App extends Component{
             interval={this.state.breakLength} title='Break Time'
             increase={this.onIncreaseBreakLength}
             decrease={this.onDecreaseBreakLength}
+            isPlay={this.state.isPlay}
           />
           <div className='separator'></div>
           <SessionInterval
             interval={this.state.sessionLength} title='Session Time'
             increase={this.onIncreaseSessionLength}
             decrease={this.onDecreaseSessionLength}
+            isPlay={this.state.isPlay}
           />
         </section>
         <div className='separator'></div>
