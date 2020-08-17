@@ -21,13 +21,21 @@ class Timer extends Component {
     let intervalId = setInterval(this.minusTimer, 1000);
 
     this.setState({
-      intervalId: intervalId
+      intervalId: intervalId,
+      isPaused: false
     })
   }
 
   minusTimer() {
     switch(this.state.timerSecond) {
       case 0:
+        if (this.props.timerMinute === 0) {
+            this.setState({
+              isPaused: !this.state.isPaused
+            });
+
+            this.props.toggleInterval(this.state.isPaused);
+          }
         this.props.updateTimerMinute()
         this.setState({
           timerSecond: 59
@@ -45,6 +53,11 @@ class Timer extends Component {
 
   pause(){
     clearInterval(this.state.intervalId);
+    if (!this.state.isPaused) {
+      this.setState({
+        isPaused: !this.state.isPaused
+      })
+    }
   }
 
   refresh() {
