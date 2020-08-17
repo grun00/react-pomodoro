@@ -28,6 +28,7 @@ body {
 
 .interval-inner {
   display: flex;
+  margin-top: 20px;
 }
 
 .interval-outer {
@@ -35,8 +36,8 @@ body {
   border-color: #f1e7b6;
   padding-top: 5px;
   padding-bottom: 30px;
-  padding-right: 150px;
-  padding-left: 150px;
+  padding-right: 130px;
+  padding-left: 130px;
   height: 150px;
   width: 200px;
   border-radius: 5px 5px 50px 50px;
@@ -98,6 +99,7 @@ h4 {
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
+  margin-top: 30px;
 }
 
 button {
