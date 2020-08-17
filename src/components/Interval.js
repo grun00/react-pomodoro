@@ -6,6 +6,8 @@ function SessionInterval(props) {
     if (props.interval === 1){
       return;
     }
+
+    props.decrease();
   }
 
   function plusCounter(){
@@ -17,11 +19,11 @@ function SessionInterval(props) {
   }
 
   return(
-    <section class='interval-outer'>
+    <section className='interval-outer'>
         <h4>{props.title}</h4>
-      <section class='interval-inner'>
+      <section className='interval-inner'>
         <button onClick={plusCounter}> <IoIosArrowUp/> </button>
-        <p class='interval-length'> {props.interval}</p>
+        <p className='interval-length'> {props.interval < 10 ? '0' + props.interval : props.interval}</p>
         <button onClick={minusCounter}> <IoIosArrowDown/>  </button>
       </section>
     </section>

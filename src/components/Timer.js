@@ -7,24 +7,66 @@ class Timer extends Component {
 
     this.state = {
       isPaused: true,
-      timerSecond: 0
+      timerSecond: 0,
+      intervalId: 0
     }
+
+    this.play = this.play.bind(this);
+    this.pause = this.pause.bind(this);
+    this.stop = this.stop.bind(this);
+    this.minusTimer = this.minusTimer.bind(this);
+  }
+
+  play(){
+    let intervalId = setInterval(this.minusTimer, 1000);
+
+    this.setState({
+      intervalId: intervalId
+    })
+  }
+
+  minusTimer() {
+    switch(this.state.timerSecond) {
+      case 0:
+        this.props.updateTimerMinute()
+        this.setState({
+          timerSecond: 59
+        })
+        break;
+      default:
+        this.setState(prevState => {
+          return {
+            timerSecond: prevState.timerSecond - 1
+          }
+        })
+        break;
+    }
+  }
+
+  pause(){
+
+  }
+
+  stop() {
+
   }
   render() {
     return (
       <React.Fragment>
-        <section class='timer-outer'>
+        <section className='timer-outer'>
           <h4> {this.state.isPaused === true? "Paused" : "Running"}</h4>
-          <section class='timer-inner'>
+          <section className='timer-inner'>
             <span> {this.props.timerHour < 10 ? '0' + this.props.timerHour : this.props.timerHour}</span>
-            <span> :{this.props.timerMinute < 10? '0' + this.props.timerMinute : this.props.timerMinute}: </span>
+            <span> : </span>
+            <span> {this.props.timerMinute < 10? '0' + this.props.timerMinute : this.props.timerMinute} </span>
+            <span> : </span>
             <span> {this.state.timerSecond < 10? '0' + this.state.timerSecond : this.state.timerSecond} </span>
           </section>
         </section>
-        <section class='timer-under'>
-          <button> <IoIosPlay/> </button>
-          <button> <IoIosPause/> </button>
-          <button> <IoIosSquare/> </button>
+        <section className='timer-under'>
+          <button onClick={this.play}> <IoIosPlay/> </button>
+          <button onClick={this.pause}> <IoIosPause/> </button>
+          <button onClick={this.stop}> <IoIosSquare/> </button>
         </section>
       </React.Fragment>
     )

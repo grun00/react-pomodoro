@@ -16,7 +16,12 @@ class App extends Component{
 
     this.onIncreaseBreakLength = this.onIncreaseBreakLength.bind(this);
     this.onIncreaseSessionLength = this.onIncreaseSessionLength.bind(this);
+    this.onDecreaseBreakLength = this.onDecreaseBreakLength.bind(this);
+    this.onDecreaseSessionLength = this.onDecreaseSessionLength.bind(this);
+    this.onUpdateTimerMinute = this.onUpdateTimerMinute.bind(this);
+    this.onToggleInterval = this.onToggleInterval.bind(this);
   }
+
   onIncreaseBreakLength(){
     this.setState(prevState => {
       return {
@@ -28,29 +33,73 @@ class App extends Component{
   onIncreaseSessionLength(){
     this.setState(prevState => {
       return {
-        sessionLength: prevState.sessionLength + 1
+        sessionLength: prevState.sessionLength + 1,
+        minute: prevState.minute + 1
       };
     })
+  }
+
+  onDecreaseBreakLength(){
+    this.setState(prevState => {
+      return {
+        breakLength: prevState.breakLength - 1
+      };
+    })
+  }
+
+  onDecreaseSessionLength(){
+    this.setState(prevState => {
+      return {
+        sessionLength: prevState.sessionLength - 1,
+        minute: prevState.minute - 1
+      };
+    })
+  }
+
+  onUpdateTimerMinute(){
+    this.setState(prevState => {
+      return {
+        minute: prevState.minute -1
+      }
+    })
+  }
+
+  onToggleInterval(isSession){
+    if (isSession) {
+      this.setState({
+        minute: this.state.sessionLength
+      })
+    } else {
+      this.setState({
+        minute: this.state.breakLength
+      })
+    }
   }
 
   render(){
     return (
       <div className="App" id="main">
         <h2> React Pomodoro </h2>
-        <section class='interval-container'>
+        <section className='interval-container'>
           <SessionInterval
             interval={this.state.breakLength} title='Break Time'
             increase={this.onIncreaseBreakLength}
+            decrease={this.onDecreaseBreakLength}
           />
-          <div class='separator'></div>
+          <div className='separator'></div>
           <SessionInterval
             interval={this.state.sessionLength} title='Session Time'
             increase={this.onIncreaseSessionLength}
+            decrease={this.onDecreaseSessionLength}
           />
         </section>
-        <div class='separator'></div>
+        <div className='separator'></div>
         <Timer
-          timerMinute={this.state.minute} timerHour={this.state.hour}
+          timerMinute={this.state.minute}
+          timerHour={this.state.hour}
+          breakTimer={this.state.breakLength}
+          updateTimerMinute={this.onUpdateTimerMinute}
+          toggleInterval={this.onToggleInterval}
         />
       </div>
     );
