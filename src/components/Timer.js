@@ -13,7 +13,7 @@ class Timer extends Component {
 
     this.play = this.play.bind(this);
     this.pause = this.pause.bind(this);
-    this.stop = this.stop.bind(this);
+    this.refresh = this.refresh.bind(this);
     this.minusTimer = this.minusTimer.bind(this);
   }
 
@@ -44,12 +44,17 @@ class Timer extends Component {
   }
 
   pause(){
-
+    clearInterval(this.state.intervalId);
   }
 
-  stop() {
-
+  refresh() {
+    this.pause();
+    this.props.resetTimer();
+    this.setState({
+      timerSecond: 0
+    })
   }
+
   render() {
     return (
       <React.Fragment>
@@ -66,7 +71,7 @@ class Timer extends Component {
         <section className='timer-under'>
           <button onClick={this.play}> <IoIosPlay/> </button>
           <button onClick={this.pause}> <IoIosPause/> </button>
-          <button onClick={this.stop}> <IoIosSquare/> </button>
+          <button onClick={this.refresh}> <IoIosSquare/> </button>
         </section>
       </React.Fragment>
     )
