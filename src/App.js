@@ -16,10 +16,14 @@ class App extends Component{
   }
   render(){
     return (
-      <div className="App">
+      <div className="App" id="main">
         <h2> React Pomodoro </h2>
-        <SessionInterval interval={this.state.breakLength} title='Break Time'/>
-        <SessionInterval interval={this.state.sessionLength} title='Session Time'/>
+        <section class='interval-container'>
+          <SessionInterval interval={this.state.breakLength} title='Break Time'/>
+          <div class='separator'></div>
+          <SessionInterval interval={this.state.sessionLength} title='Session Time'/>
+        </section>
+        <div class='separator'></div>
         <Timer timerMinute={this.state.minute} timerHour={this.state.hour}/>
       </div>
     );
